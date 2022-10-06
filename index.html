@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"
+    integrity="sha512-G8JE1Xbr0egZE5gNGyUm1fF764iHVfRXshIoUWCTPAbKkkItp/6qal5YAHXrxEu4HNfPTQs6HOu3D5vCGS1j3w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="/" aria-current="page">Home</a>
+      <a href="/page2.html">Other page</a>
+    </nav>
+    <main>
+      <h1>Home page</h1>
+    </main>
+    <canvas id="myChart" width="400" height="400"></canvas>
+  </body>
+  <script>
+    // var ctx = document.getElementById('myChart').getContext('2d');
+    const a = {
+      vitalType: 31,
+      vitalName: 'Peak Flow',
+      chartData: [
+        {
+          data: [601],
+          label: 'PEF',
+          backgroundColor: 'rgba(179, 218, 255,0.3)',
+          lineTension: 0,
+          yAxisID: 'PEF',
+        },
+        {
+          data: [8],
+          label: 'FEV1',
+          backgroundColor: 'rgba(153, 171, 128,0.3)',
+          lineTension: 0,
+          yAxisID: 'FEV1',
+        },
+      ],
+      label: ['Oct 06'],
+      chartOption: {
+        scales: {
+          yAxes: [
+            {
+              id: 'PEF',
+              type: 'linear',
+              ticks: {
+                beginAtZero: true,
+                stepSize: 20,
+                max: 660.3,
+                min: 0,
+                fontColor: 'black',
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'L/min',
+                fontColor: 'black',
+                fontStyle: 'bold',
+              },
+            },
+            {
+              id: 'FEV1',
+              type: 'linear',
+              position: 'right',
+              ticks: {
+                beginAtZero: true,
+                stepSize: 1,
+                max: 10,
+                min: 0,
+                fontColor: 'black',
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'L',
+                fontColor: 'black',
+                fontStyle: 'bold',
+              },
+              gridLines: {
+                display: true,
+                drawBorder: true,
+                drawOnChartArea: false,
+                drawTicks: true,
+              },
+            },
+          ],
+          xAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: 'Date',
+                fontColor: 'black',
+                fontStyle: 'bold',
+              },
+              type: 'time',
+              ticks: {
+                fontColor: 'black',
+                autoSkip: true,
+                minRotation: 60,
+              },
+              time: {
+                unit: 'week',
+                displayFormats: {
+                  week: 'MMM DD',
+                },
+              },
+            },
+          ],
+        },
+        legend: {
+          labels: {
+            usePointStyle: true,
+            fontColor: 'black',
+          },
+        },
+        elements: {
+          point: {
+            radius: 5,
+            hitRadius: 5,
+            hoverRadius: 5,
+            hoverBorderWidth: 2,
+          },
+        },
+        spanGaps: true,
+      },
+      data: [
+        {
+          vitalDate: 1665034606000,
+          vitalDateString: '2022-10-06 11:06 am',
+          vitalID: 27852393,
+          vitalTypeID: 31,
+          pef: 601,
+          fev1: 8,
+        },
+      ],
+    };
+    const data5 = {
+      labels: [...a.label],
+      datasets: [...a.chartData],
+    };
+    var ctx5 = document.getElementById('myChart').getContext('2d');
+    var chartInstance5 = new Chart(ctx5, {
+      type: 'line',
+      data: {...data5},
+      options: {...a.chartOption},
+    });
+  </script>
+</html>
